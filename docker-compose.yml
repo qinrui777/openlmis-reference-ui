@@ -12,6 +12,9 @@ services:
     env_file: .env
     depends_on:
       - requisition-ui
+    ports:
+      - "9000:9000"
+      - "9876:9876"
   image:
     build: .
     image: openlmis/requisition-refui
