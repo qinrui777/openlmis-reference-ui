@@ -7,9 +7,6 @@ services:
       - '.:/app'
     volumes_from:
       - requisition-ui
-    command:
-      - './build.sh'
-    env_file: .env
     depends_on:
       - requisition-ui
     ports:
@@ -17,7 +14,7 @@ services:
       - "9876:9876"
   image:
     build: .
-    image: openlmis/requisition-refui
+    image: openlmis/reference-ui
   requisition-ui:
     image: openlmis/requisition-ui
     volumes:
