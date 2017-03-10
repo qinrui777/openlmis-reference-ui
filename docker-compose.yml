@@ -7,8 +7,10 @@ services:
       - '.:/app'
     volumes_from:
       - requisition-ui
+      - stockmanagement-ui
     depends_on:
       - requisition-ui
+      - stockmanagement-ui
     ports:
       - "9000:9000"
       - "9876:9876"
@@ -19,3 +21,7 @@ services:
     image: openlmis/requisition-ui
     volumes:
       - '/openlmis-requisition-ui'
+  stockmanagement-ui:
+    image: openlmis/stockmanagement-ui
+    volumes:
+      - '/openlmis-stockmanagement-ui'

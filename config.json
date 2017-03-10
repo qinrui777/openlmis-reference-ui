@@ -1,5 +1,6 @@
 {
 	"orderedBuildDirectories": [
-		"/openlmis-requisition-ui"
+		"/openlmis-requisition-ui",
+		"/openlmis-stockmanagement-ui"
 	]
 }
