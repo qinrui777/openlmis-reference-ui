@@ -6,7 +6,7 @@
     "/openlmis-referencedata-ui",
     "/openlmis-report-ui",
     "/openlmis-fulfillment-ui",
-    "/openlmis-requisition-refUI",
+    "/openlmis-requisition-ui",
     "/openlmis-stockmanagement-ui"
   ]
 }
