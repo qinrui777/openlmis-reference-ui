@@ -12,7 +12,7 @@ services:
     volumes_from:
       - auth-ui
       - referencedata-ui
-      - requisition-ui
+      - requisition-refUI
       - report-ui
       - stockmanagement-ui
       - ui-components
@@ -20,7 +20,7 @@ services:
     depends_on:
       - auth-ui
       - referencedata-ui
-      - requisition-ui
+      - requisition-refUI
       - report-ui
       - stockmanagement-ui
       - ui-components
@@ -35,16 +35,16 @@ services:
       - '/openlmis-fulfillment-ui'
   referencedata-ui:
     image: openlmis/referencedata-ui
-    volumes: 
+    volumes:
       - '/openlmis-referencedata-ui'
   report-ui:
     image: openlmis/report-ui
     volumes:
       - '/openlmis-report-ui'
   requisition-ui:
-    image: openlmis/requisition-ui
+    image: openlmis/requisition-refUI
     volumes:
-      - '/openlmis-requisition-ui'
+      - '/openlmis-requisition-refUI'
   stockmanagement-ui:
     image: openlmis/stockmanagement-ui
     volumes:
