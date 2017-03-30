@@ -11,6 +11,7 @@ services:
     env_file: .env
     volumes_from:
       - auth-ui
+      - fulfillment-ui
       - referencedata-ui
       - requisition-ui
       - report-ui
@@ -19,6 +20,7 @@ services:
       - ui-layout
     depends_on:
       - auth-ui
+      - fulfillment-ui
       - referencedata-ui
       - requisition-ui
       - report-ui
