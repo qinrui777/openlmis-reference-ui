@@ -15,6 +15,7 @@ services:
       - referencedata-ui
       - requisition-ui
       - report-ui
+      - stockmanagement-ui
       - ui-components
       - ui-layout
     depends_on:
@@ -23,6 +24,7 @@ services:
       - referencedata-ui
       - requisition-ui
       - report-ui
+      - stockmanagement-ui
       - ui-components
       - ui-layout
   auth-ui:
@@ -45,6 +47,10 @@ services:
     image: openlmis/requisition-ui
     volumes:
       - '/openlmis-requisition-ui'
+  stockmanagement-ui:
+    image: openlmis/stockmanagement-ui
+    volumes:
+     - '/openlmis-stockmanagement-ui'
   ui-components:
     image: openlmis/ui-components
     volumes:
