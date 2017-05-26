@@ -48,7 +48,7 @@ services:
     volumes:
       - '/openlmis-requisition-ui'
   stockmanagement-ui:
-    image: openlmis/stockmanagement-ui:1.0.0-BETA
+    image: openlmis/stockmanagement-ui:1.0.0-SNAPSHOT
     volumes:
      - '/openlmis-stockmanagement-ui'
   ui-components:
