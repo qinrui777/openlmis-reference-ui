@@ -51,6 +51,10 @@ services:
     image: openlmis/stockmanagement-ui:1.0.0-SNAPSHOT
     volumes:
      - '/openlmis-stockmanagement-ui'
+  cce-ui:
+    image: openlmis/cce-ui:1.0.0-beta-SNAPSHOT
+    volumes:
+      - '/openlmis-cce-ui'
   ui-components:
     image: openlmis/ui-components:5.1.1-SNAPSHOT
     volumes:
