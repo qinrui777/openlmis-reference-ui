@@ -47,6 +47,10 @@ services:
     image: openlmis/requisition-ui:5.1.1-SNAPSHOT
     volumes:
       - '/openlmis-requisition-ui'
+  cce-ui:
+    image: openlmis/cce-ui:1.0.0-beta-SNAPSHOT
+    volumes:
+     - '/openlmis-cce-ui'
   stockmanagement-ui:
     image: openlmis/stockmanagement-ui:1.0.0-SNAPSHOT
     volumes:
