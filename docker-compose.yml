@@ -15,7 +15,6 @@ services:
       - referencedata-ui
       - requisition-ui
       - report-ui
-      - cce-ui
       - stockmanagement-ui
       - ui-components
       - ui-layout
@@ -25,7 +24,6 @@ services:
       - referencedata-ui
       - requisition-ui
       - report-ui
-      - cce-ui
       - stockmanagement-ui
       - ui-components
       - ui-layout
