@@ -37,7 +37,6 @@ services:
     image: openlmis/cce-ui:1.0.0-SNAPSHOT
     volumes:
       - '/openlmis-cce-ui'
-      - cce-ui
   fulfillment-ui:
     image: openlmis/fulfillment-ui:5.1.0-SNAPSHOT
     volumes:
