@@ -30,7 +30,7 @@ services:
       - ui-components
       - ui-layout
   auth-ui:
-    image: openlmis/auth-ui:6.0.1-SNAPSHOT
+    image: openlmis/auth-ui:6.0.1
     volumes:
       - '/openlmis-auth-ui'
   fulfillment-ui:
@@ -46,7 +46,7 @@ services:
     volumes:
       - '/openlmis-report-ui'
   requisition-ui:
-    image: openlmis/requisition-ui:5.2.1-SNAPSHOT
+    image: openlmis/requisition-ui:5.2.1
     volumes:
       - '/openlmis-requisition-ui'
   stockmanagement-ui:
