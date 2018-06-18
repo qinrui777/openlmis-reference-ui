@@ -5,6 +5,7 @@ if [ ! -f /usr/share/nginx/html/openlmis.js ]; then
 else
     echo "File openlmis.js found"
 fi
+echo $BATCH_APPROVE_SCREEN
 envreplace /usr/share/nginx/html/openlmis.js
 
 node consul/registration.js -c register -f consul/config.json
