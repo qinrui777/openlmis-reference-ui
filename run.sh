@@ -1,5 +1,10 @@
 #!/bin/sh
-npm install envreplace
+npm install -g envreplace
+if [ ! -f /usr/share/nginx/html/openlmis.js ]; then
+    echo "File openlmis.js not found!"
+else
+    echo "File openlmis.js found"
+fi
 envreplace /usr/share/nginx/html/openlmis.js
 
 node consul/registration.js -c register -f consul/config.json
