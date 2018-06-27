@@ -39,7 +39,6 @@ pipeline {
                         docker-compose pull
                         docker-compose down --volumes
                         docker-compose run --entrypoint /app/build-fix-docs.sh reference-ui
-                        docker-compose build image
                         docker-compose down --volumes
                     '''
                 }
