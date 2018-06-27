@@ -1,1 +1,5 @@
-{}
+{
+  "dependencies": {
+    "autosize-input": "https://github.com/yuanqing/autosize-input.git#v0.4.0"
+  }
+}
