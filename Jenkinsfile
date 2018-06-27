@@ -51,9 +51,6 @@ pipeline {
                 failure {
                     slackSend color: 'danger', message: "${env.JOB_NAME} - #${env.BUILD_NUMBER} ${env.STAGE_NAME} FAILED (<${env.BUILD_URL}|Open>)"
                 }
-                always {
-                    junit '**/build/test/test-results/*.xml'
-                }
             }
         }
     }
