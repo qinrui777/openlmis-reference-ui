@@ -12,6 +12,15 @@ pipeline {
         stage('Preparation') {
             steps {
                 checkout scm
+
+                withCredentials([usernamePassword(
+                  credentialsId: "cad2f741-7b1e-4ddd-b5ca-2959d40f62c2",
+                  usernameVariable: "USER",
+                  passwordVariable: "PASS"
+                )]) {
+                    sh 'set +x'
+                    sh 'docker login -u $USER -p $PASS'
+                }
                 script {
                     def properties = readProperties file: 'project.properties'
                     if (!properties.version) {
@@ -56,10 +65,36 @@ pipeline {
                 }
             }
         }
+        stage('Push image') {
+            when {
+                expression {
+                    return env.GIT_BRANCH == 'master' || env.GIT_BRANCH =~ /rel-.+/
+                }
+            }
+            steps {
+                sh "docker tag openlmis/reference-ui:latest openlmis/reference-ui:${VERSION}"
+                sh "docker push openlmis/reference-ui:${VERSION}"
+            }
+            post {
+                success {
+                    script {
+                        if (!VERSION.endsWith("SNAPSHOT")) {
+                            currentBuild.rawBuild.keepLog(true)
+                        }
+                    }
+                }
+                failure {
+                    slackSend color: 'danger', message: "${env.JOB_NAME} - #${env.BUILD_NUMBER} ${env.STAGE_NAME} FAILED (<${env.BUILD_URL}|Open>)"
+                }
+            }
+        }
     }
     post {
         fixed {
             slackSend color: 'good', message: "${env.JOB_NAME} - #${env.BUILD_NUMBER} Back to normal"
+        }
+        success {
+            build job: 'OpenLMIS-reference-ui-deploy-to-test', wait: false
         }
     }
 }
