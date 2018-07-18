@@ -46,7 +46,7 @@ services:
     volumes:
       - '/openlmis-report-ui'
   requisition-ui:
-    image: openlmis/requisition-ui:5.3.2-SNAPSHOT
+    image: openlmis/requisition-ui:5.3.2
     volumes:
       - '/openlmis-requisition-ui'
   stockmanagement-ui:
@@ -58,7 +58,7 @@ services:
     volumes:
      - '/openlmis-cce-ui'
   ui-components:
-    image: openlmis/ui-components:5.3.1-SNAPSHOT
+    image: openlmis/ui-components:5.3.1
     volumes:
       - '/openlmis-ui-components'
   ui-layout:
