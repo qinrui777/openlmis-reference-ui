@@ -76,7 +76,6 @@ pipeline {
                 }
             }
             steps {
-                sh "docker pull openlmis/reference-ui:latest"
                 sh "docker tag openlmis/reference-ui:latest openlmis/reference-ui:${VERSION}"
                 sh "docker push openlmis/reference-ui:${VERSION}"
             }
