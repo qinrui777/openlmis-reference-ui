@@ -42,7 +42,7 @@ services:
     volumes:
       - '/openlmis-referencedata-ui'
   report-ui:
-    image: openlmis/report-ui:5.1.1-SNAPSHOT
+    image: openlmis/report-ui:5.2.0-SNAPSHOT
     volumes:
       - '/openlmis-report-ui'
   requisition-ui:
