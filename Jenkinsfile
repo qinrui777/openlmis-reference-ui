@@ -52,6 +52,7 @@ pipeline {
                         docker-compose run --entrypoint /dev-ui/build.sh reference-ui
                         docker-compose build image
                         docker-compose down --volumes
+                        sudo rm -rf node_modules/
                     '''
                 }
             }
