@@ -1,3 +1,5 @@
+import hudson.tasks.test.AbstractTestResultAction
+
 pipeline {
     agent any
     options {
@@ -62,9 +64,13 @@ pipeline {
                                  docker-compose down --volumes
                                  sudo rm -rf node_modules/
                              '''
+                             currentBuild.result = processTestResults('SUCCESS')
                          }
                          catch (exc) {
-                             currentBuild.result = 'UNSTABLE'
+                             currentBuild.result = processTestResults('FAILURE')
+                             if (currentBuild.result == 'FAILURE') {
+                                 error(exc.toString())
+                             }
                          }
                     }
                 }
@@ -82,9 +88,6 @@ pipeline {
                     script {
                         notifyAfterFailure()
                     }
-                }
-                always {
-                    junit '**/build/test/test-results/*.xml'
                 }
             }
         }
@@ -130,11 +133,31 @@ pipeline {
 }
 
 def notifyAfterFailure() {
+    messageColor = 'danger'
+    if (currentBuild.result == 'UNSTABLE') {
+        messageColor = 'warning'
+    }
     BRANCH = "${env.GIT_BRANCH}".trim()
     if (BRANCH.equals("master") || BRANCH.startsWith("rel-")) {
-        slackSend color: 'danger', message: "${env.JOB_NAME} - #${env.BUILD_NUMBER} ${env.STAGE_NAME} ${currentBuild.result} (<${env.BUILD_URL}|Open>)"
+        slackSend color: "${messageColor}", message: "${env.JOB_NAME} - #${env.BUILD_NUMBER} ${env.STAGE_NAME} ${currentBuild.result} (<${env.BUILD_URL}|Open>)"
     }
     emailext subject: "${env.JOB_NAME} - #${env.BUILD_NUMBER} ${env.STAGE_NAME} ${currentBuild.result}",
         body: """<p>${env.JOB_NAME} - #${env.BUILD_NUMBER} ${env.STAGE_NAME} ${currentBuild.result}</p><p>Check console <a href="${env.BUILD_URL}">output</a> to view the results.</p>""",
         recipientProviders: [[$class: 'CulpritsRecipientProvider'], [$class: 'DevelopersRecipientProvider']]
+}
+
+def processTestResults(status) {
+    junit '**/build/test/test-results/*.xml'
+
+    AbstractTestResultAction testResultAction = currentBuild.rawBuild.getAction(AbstractTestResultAction.class)
+    if (testResultAction != null) {
+        failuresCount = testResultAction.failCount
+        echo "Failed tests count: ${failuresCount}"
+        if (failuresCount > 0) {
+            echo "Setting build unstable due to test failures"
+            status = 'UNSTABLE'
+        }
+    }
+
+    return status
 }
