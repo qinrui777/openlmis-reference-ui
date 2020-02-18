@@ -9,3 +9,11 @@ Multiple UI modules are compiled together with the OpenLMIS dev-ui to create the
 * [OpenLMIS Requisition UI](https://github.com/OpenLMIS/openlmis-requisition-ui)
 * [OpenLMIS UI Components](https://github.com/OpenLMIS/openlmis-ui-components)
 * [OpenLMIS UI Layout](https://github.com/OpenLMIS/openlmis-ui-layout)
+
+
+
+### 打镜像步骤
+
+- 检查 docker-compose.yml 文件中的镜像 **名称** 和 **版本**
+- `touch .env`
+- `docker-compose run --entrypoint /dev-ui/build.sh reference-ui `
